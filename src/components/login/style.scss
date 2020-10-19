@@ -1,0 +1,31 @@
+@import "../../style.scss";
+#form-container {
+  @extend .display-static;
+  justify-content: center;
+  background-color: gray;
+  height: 100vh;
+  #form {
+    width: 400px;
+    background-color: white;
+    padding: 0 2rem;
+    border-radius: 5px;
+    text-align: center;
+    #logo {
+      width: 50%;
+    }
+    h2 {
+      font-weight: bold;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      margin: 0 0 1.5rem;
+    }
+    .login-form-button {
+      width: 30%;
+    }
+    .form-footer {
+      margin: 1.5rem 0;
+    }
+  }
+}
