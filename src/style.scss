@@ -1,10 +1,15 @@
 // varibles
-@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,700&display=swap");
 .display-static {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+.font-static {
+  font-family: "Roboto", sans-serif;
+}
+$color-active: #03a9f4;
 #app {
   //background-color: gray;
 }

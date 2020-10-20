@@ -1,0 +1,29 @@
+@import '../../style';
+.side-menu {
+  height: 100%;
+  background-color: #2a323c;
+  position: fixed;
+  .header-menu {
+    @extend .display-static;
+    flex-direction: column;
+    .logo {
+      width: 70%;
+    }
+    .avatar{
+        width: 25%;
+    }
+    .username{
+        @extend .font-static;
+        margin: .5rem 0;
+        color: white;
+    }
+  }
+  .ant-menu {
+    height: 100%;
+    margin: 0;
+    background-color: #2a323c;
+    .ant-menu-item-selected{
+        background-color: $color-active;
+    }
+  }
+}
