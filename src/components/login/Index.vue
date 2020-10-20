@@ -6,7 +6,7 @@
       <a-form-item>
         <a-input
           v-decorator="[
-            'userName',
+            'username',
             {
               rules: [
                 { required: true, message: 'Please input your username!' },
@@ -14,6 +14,7 @@
             },
           ]"
           placeholder="Username"
+          class="log-input"
         >
           <a-icon
             slot="prefix"
@@ -34,6 +35,7 @@
           ]"
           type="password"
           placeholder="Password"
+          class="log-input"
         >
           <a-icon
             slot="prefix"
@@ -54,7 +56,7 @@
         Remember me
       </a-checkbox>
       <a-button type="primary" html-type="submit" class="login-form-button">
-        Log in
+        Log In
       </a-button>
       <a-row type="flex" justify="space-between" class="form-footer">
         <a class="login-form-forgot" href=""> Forgot password </a>
@@ -68,6 +70,8 @@
 </template>
 <script>
 import { importImg } from "../../ultils/importImg";
+import { login } from "../../ultils/requests/login";
+import { checkToken } from "../../ultils/checkToken";
 export default {
   name: "login",
   beforeCreate() {
@@ -79,6 +83,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log("Received values of form: ", values);
+          login(this, values);
         }
       });
     },
@@ -86,8 +91,13 @@ export default {
       return importImg[img];
     },
   },
+  created() {
+    if (!checkToken()) {
+      this.$router.push("/users");
+    }
+  },
 };
 </script>
 
-<style src='./style.scss' lang ='scss' scoped>
+<style src='./style.scss' lang ='scss'>
 </style>

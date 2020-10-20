@@ -15,11 +15,17 @@
     }
     h2 {
       font-weight: bold;
+      color: #898989;
     }
     label {
       display: flex;
       align-items: center;
       margin: 0 0 1.5rem;
+    }
+    .log-input {
+      .ant-input {
+        height: 38px;
+      }
     }
     .login-form-button {
       width: 30%;

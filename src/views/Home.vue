@@ -1,14 +1,14 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-  </div>
+  <Index />
 </template>
 
 <script>
 // @ is an alias to /src
-
+import Index from "../components/users/Index";
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Index,
+  },
 };
 </script>
