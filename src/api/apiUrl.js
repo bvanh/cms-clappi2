@@ -4,7 +4,7 @@ const api = {
   LOGIN:"/login",
   REFRESH_TOKEN:"/token/renew",
   //USERS
-  USERS:"/user"
+  USERS:"/users"
 };
 
 export default api;

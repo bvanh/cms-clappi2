@@ -1,6 +1,6 @@
 <template>
   <a-row>
-    <div class="side-menu">
+    <a-col class="side-menu">
       <!-- <a-button
         type="primary"
         style="margin-bottom: 16px"
@@ -24,8 +24,14 @@
           <span>{{ menu.name.toUpperCase() }}</span>
         </a-menu-item>
       </a-menu>
-    </div>
-    <slot></slot>
+    </a-col>
+    <a-col class="content-page">
+      <div class="header">
+        <a-button type="primary" icon="menu" class="btn-side-menu"></a-button>
+        <img :src="importImg('avatar.png')" class="avatar-log" />
+      </div>
+      <slot></slot>
+    </a-col>
   </a-row>
 </template>
 <script>
@@ -44,6 +50,13 @@ export default {
     },
     importImg(img) {
       return importImg[img];
+    },
+  },
+  computed: {
+    getRouter() {
+      const route = this.$router.history.current.fullPath;
+      // console.log(route)
+      return route;
     },
   },
 };

@@ -13,7 +13,7 @@ const localServices = {
     localStorage.setItem(nameAccessLocal, JSON.stringify(accessToken));
   },
   getToken: (token) => {
-    return localStorage.getItem(token);
+    return JSON.parse(localStorage.getItem(token));
   },
 };
 

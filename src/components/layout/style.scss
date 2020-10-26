@@ -27,3 +27,21 @@
     }
   }
 }
+.content-page{
+  margin-left: 258px;
+  // padding: 1rem;
+  // background-color: #f5f4f4;
+  .header{
+    @extend .display-static;
+   padding: 1rem 2rem;
+   background-color:$color-active;
+   .btn-side-menu{
+    width: 40px;
+    border-radius: 0px;
+   }
+   .avatar-log{
+    width: 45px;
+   }
+   
+  }
+}
