@@ -7,13 +7,27 @@
       <div class="header-table">
         <span>List Users</span>
       </div>
-      <a-table :columns="columns" :data-source="listUsers" bordered>
+      <a-table
+        :columns="columnsTable"
+        :data-source="listUsers"
+        bordered
+        :row-key="(record) => record.fake_id"
+        :pagination="false"
+      >
         <template slot="name" slot-scope="text">
           <a>{{ text }}</a>
         </template>
         <template slot="title">
           <div class="table-controls">
-            <a-button>Export</a-button>
+            <vue-excel-xlsx
+              :data="listUsers"
+              :columns="columnsExport"
+              :filename="'ListUsers'"
+              :sheetname="'Users'"
+              class="btn-export"
+            >
+              Export
+            </vue-excel-xlsx>
             <div class="search-table">
               <a-select
                 :default-value="params.type"
@@ -31,6 +45,17 @@
             </div>
           </div>
         </template>
+        <template slot="footer">
+          <a-pagination
+            :total="totalItems"
+            :show-total="
+              (total, range) => `${range[0]}-${range[1]} of ${total} items`
+            "
+            :page-size="params.size"
+            :default-current="currentPage"
+            @change="handleChangePage"
+          />
+        </template>
         <!-- <template slot="footer" slot-scope="currentPageData"> Footer </template> -->
       </a-table>
     </div>
@@ -40,40 +65,7 @@
 <script>
 import Layout from "../layout/Layout";
 import { getListUsers } from "../../ultils/requests/getData/getUsers";
-const columns = [
-  {
-    title: "UserID",
-    dataIndex: "fake_id",
-    scopedSlots: { customRender: "name" },
-    key: "userid",
-  },
-  {
-    title: "UserName",
-    //className: "username",
-    dataIndex: "username",
-    key: "username",
-  },
-  {
-    title: "Mobile",
-    dataIndex: "mobile",
-    key: "moblie",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    key: "gender",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-  },
-];
+import { columnsExport, columnsTable } from "./services";
 export default {
   data() {
     return {
@@ -94,12 +86,19 @@ export default {
         search: "",
       },
       listUsers: [],
-      columns,
+      dataExport: [],
+      totalItems: null,
+      currentPage: null,
+      columnsTable,
+      columnsExport,
     };
   },
   methods: {
     handleChangeTypeSearch(e) {
       console.log(e);
+    },
+    handleChangePage(e) {
+      this.params.page = e;
     },
     onSearch(e) {
       this.params.search = e.target.value;

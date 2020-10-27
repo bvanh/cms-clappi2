@@ -8,8 +8,12 @@ const getListUsers = (thisObj, params) => {
   return baseData
     .get(USERS, { params })
     .then((res) => {
-      console.log(res.data);
-      thisObj.listUsers = res.data.listUsers;
+      //console.log(res.data);
+      const { listUsers, totalItems, currentPage } = res.data;
+      thisObj.listUsers = listUsers;
+      thisObj.totalItems = totalItems;
+      thisObj.currentPage = currentPage;
+      //baseData.get(USERS)
     })
     .catch((err) => {
       console.log(err.response);

@@ -26,8 +26,16 @@
       .table-controls,
       .search-table {
         @extend .display-static;
-        input{
-            margin-left: .5rem;
+        input {
+          margin-left: 0.5rem;
+        }
+        .btn-export {
+          border: 1px solid #d9d9d9;
+          background: white;
+          padding: 5px 16px;
+          :focus{
+            border: 1px solid #d9d9d9;
+          }
         }
       }
     }
