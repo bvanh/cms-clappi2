@@ -14,14 +14,16 @@
         <span class="username">John Doe</span>
       </div>
       <a-menu
-        :default-selected-keys="[0]"
+        :default-selected-keys="[menuSelected]"
         mode="inline"
         theme="dark"
         :inline-collapsed="collapsed"
       >
-        <a-menu-item v-for="(menu, index) of menus" :key="index">
-          <a-icon :type="menu.iconType" />
-          <span>{{ menu.name.toUpperCase() }}</span>
+        <a-menu-item v-for="menu of menus" :key="'/' + menu.name">
+          <router-link :to="menu.name">
+            <a-icon :type="menu.iconType" />
+            <span>{{ menu.name.toUpperCase() }}</span>
+          </router-link>
         </a-menu-item>
       </a-menu>
     </a-col>
@@ -42,6 +44,7 @@ export default {
     return {
       collapsed: false,
       menus: constants.menus,
+      menuSelected: this.$router.history.current.fullPath,
     };
   },
   methods: {
