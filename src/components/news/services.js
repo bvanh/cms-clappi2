@@ -33,7 +33,7 @@ const columnsTable = [
     scopedSlots: { customRender: "name" },
   },
   {
-    title: "type",
+    title: "Type",
     dataIndex: "type",
   },
   {
