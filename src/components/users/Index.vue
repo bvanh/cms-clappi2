@@ -64,7 +64,7 @@
 
 <script>
 import Layout from "../layout/Layout";
-import { getListUsers } from "../../ultils/requests/getData/getUsers";
+import { getListUsers } from "../../ultils/requests/users/getUsers";
 import { columnsExport, columnsTable } from "./services";
 export default {
   data() {
