@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Login from "../views/Login";
 import Users from "../views/Users.vue";
 import News from "../views/News.vue";
+import Media from "../views/Media.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -12,7 +13,8 @@ const routes = [
     component: Login,
   },
   {
-    path: "/users",
+    path: "/",
+    alias: "/users",
     name: "Home",
     component: Users,
   },
@@ -20,6 +22,11 @@ const routes = [
     path: "/news",
     name: "News",
     component: News,
+  },
+  {
+    path: "/media",
+    name: "media",
+    component: Media,
   },
   {
     path: "/about",

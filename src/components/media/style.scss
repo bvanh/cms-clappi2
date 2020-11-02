@@ -1,0 +1,9 @@
+@import "../../style";
+
+.media-content {
+  @extend .component-static;
+  .list-images {
+    background-color: white;
+    padding: 0 0.5rem;
+  }
+}
