@@ -7,6 +7,10 @@ const api = {
   USERS: "/users",
   //news
   NEWS: "/news",
+  //media
+  IMAGES: "/media/images",
+  UPLOAD: "/media/upload",
+  DELETE_IMG: "/media/delete",
 };
 
 export default api;
