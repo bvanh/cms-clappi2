@@ -1,17 +1,40 @@
 <template>
   <a-row :gutter="[24, 16]">
-    <a-col :span="6" v-for="item of listImages" :key="item.id">
-      <div class="img-frame" :style="getBg(item.url)">
-        <div class="img-controls">
+    <a-col
+      :span="6"
+      v-for="item of listImages"
+      :key="item.id"
+      class="images"
+    >
+      <div
+        class="img-frame"
+        :class="[
+          imgPreview
+            ? item.id === imgPreview.id
+              ? 'img-frame images-checked'
+              : 'img-frame'
+            : 'img-frame',
+        ]"
+        :style="getBg(item.url)"
+      >
+        <div
+          :class="[
+            isImgChecked(item.id) ? 'img-controls-checked' : 'img-controls',
+          ]"
+        >
           <a-checkbox
-            @change="onChange"
+            @change="onImgChecked"
             :value="item.id"
             class="img-check"
           ></a-checkbox>
-          <a-icon type="download" class="img-download" />
+          <a-icon
+            type="download"
+            class="img-download"
+            @click.prevent="downloadImg(item.url, item.name)"
+          />
         </div>
+        <div class="images-mark" @click="setImgPreview(item)"></div>
       </div>
-      <!-- <a @click.prevent="downloadItem(item.url, item.name)"> down </a> -->
     </a-col>
   </a-row>
 </template>
@@ -21,13 +44,32 @@ import axios from "axios";
 export default {
   props: {
     listImages: Array,
+    imgPreview: Object,
+    setImgPreview: Function,
+  },
+  data() {
+    return {
+      imgChecked: [],
+    };
   },
   methods: {
-    onChange(e) {
-      console.log(e);
+    onImgChecked(e) {
+      const { checked, value } = e.target;
+      switch (checked) {
+        case true:
+          this.imgChecked = [...this.imgChecked, value];
+          break;
+        default:
+          this.imgChecked = this.imgChecked.filter((val) => val !== value);
+          break;
+      }
+      console.log(this.imgChecked);
+    },
+    isImgChecked(imgId) {
+      return this.imgChecked.includes(imgId);
     },
     getBg: (img) => getBg(img),
-    downloadItem(url, name) {
+    downloadImg(url, name) {
       axios
         .get(url, { responseType: "blob" })
         .then((response) => {

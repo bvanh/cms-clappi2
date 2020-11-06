@@ -8,17 +8,25 @@
         <a-tabs default-active-key="1" @change="switchMenu">
           <a-tab-pane key="1" tab="Images"></a-tab-pane>
           <a-tab-pane key="2" tab="Albums"></a-tab-pane>
+          <div slot="tabBarExtraContent">
+            <Upload :getListImages="getListImages" />
+          </div>
         </a-tabs>
-        <ListImages :listImages="listImages" />
+        <ListImages
+          :listImages="listImages"
+          :setImgPreview="setImgPreview"
+          :imgPreview="imgPreview"
+        />
       </a-col>
-      <Upload />
+      <Preview :imgPreview="imgPreview" />
     </a-row>
   </div>
 </template>
 <script>
 import ListImages from "./ListImages";
-import Upload from "./Upload";
+import Preview from "./Preview";
 import { getListImages } from "../../ultils/requests/media/getImages";
+import Upload from "./Upload";
 export default {
   data() {
     return {
@@ -29,11 +37,20 @@ export default {
         page: 0,
         size: 10,
       },
+      imgPreview: null,
     };
   },
   methods: {
     switchMenu(key) {
       console.log(key);
+    },
+    setImgPreview(img) {
+      console.log(img);
+      this.imgPreview = img;
+    },
+    getListImages() {
+      //console.log('fsfs')
+      getListImages(this, this.params);
     },
   },
   created() {
@@ -41,6 +58,7 @@ export default {
   },
   components: {
     ListImages,
+    Preview,
     Upload,
   },
 };
