@@ -20,7 +20,7 @@
         :inline-collapsed="collapsed"
       >
         <a-menu-item v-for="menu of menus" :key="'/' + menu.name">
-          <router-link :to="menu.name">
+          <router-link :to="{ name: menu.name }">
             <a-icon :type="menu.iconType" />
             <span>{{ menu.name.toUpperCase() }}</span>
           </router-link>

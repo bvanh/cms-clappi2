@@ -14,8 +14,11 @@
         :row-key="(record) => record.fake_id"
         :pagination="false"
       >
-        <template slot="name" slot-scope="text">
-          <a>{{ text }}</a>
+        <template slot="name" slot-scope="text, record">
+          <router-link
+            :to="{ path: '/users/detail', query: { userId: record.user_id } }"
+            >{{ text }}</router-link
+          >
         </template>
         <template slot="title">
           <div class="table-controls">
@@ -63,9 +66,9 @@
 </template>
 
 <script>
-import Layout from "../layout/Layout";
-import { getListUsers } from "../../ultils/requests/users/getUsers";
-import { columnsExport, columnsTable } from "./services";
+import Layout from "../../layout/Layout";
+import { getListUsers } from "@/ultils/requests/users/getInfo";
+import { columnsExport, columnsTable } from "../services";
 export default {
   data() {
     return {
@@ -80,7 +83,7 @@ export default {
         },
       ],
       params: {
-        page: 1,
+        page: 0,
         size: 10,
         type: 1,
         search: "",

@@ -1,0 +1,36 @@
+@import "@/style";
+.profile {
+  padding: 1rem 2rem;
+  .user-controls {
+    text-align: center;
+    .user-avatar {
+      width: 50%;
+      padding: 1rem;
+    }
+    .ant-menu-item {
+      padding-right: 48px;
+    }
+  }
+  .personal {
+    padding: 1rem 2rem;
+    .title {
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eaeaf1;
+      margin-bottom: 30px;
+      color: #616670;
+      font-size: 16px;
+    }
+    .info {
+      @extend .display-static;
+      padding-left: 5rem;
+      margin-bottom: 1rem;
+      .control-label{
+        font-weight: 700;
+        text-align: right;
+      }
+      // div {
+      //   @extend .display-static;
+      // }
+    }
+  }
+}

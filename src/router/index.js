@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login";
 import Users from "../views/Users.vue";
+import UserDetail from "../views/UserDetail.vue";
 import News from "../views/News.vue";
 import Media from "../views/Media.vue";
 Vue.use(VueRouter);
@@ -15,12 +16,18 @@ const routes = [
   {
     path: "/",
     alias: "/users",
-    name: "Home",
+    name: "users",
     component: Users,
   },
   {
+    path: "/users/detail",
+    alias: "user-detail",
+    name: "user",
+    component: UserDetail,
+  },
+  {
     path: "/news",
-    name: "News",
+    name: "news",
     component: News,
   },
   {

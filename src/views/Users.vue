@@ -1,14 +1,14 @@
 <template>
-  <Index />
+  <ListUsers />
 </template>
 
 <script>
 // @ is an alias to /src
-import Index from "../components/users/Index";
+import ListUsers from "../components/users/users/ListUsers";
 export default {
   name: "Home",
   components: {
-    Index,
+    ListUsers,
   },
 };
 </script>

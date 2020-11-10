@@ -5,6 +5,7 @@ const api = {
   REFRESH_TOKEN: "/token/renew",
   //USERS
   USERS: "/users",
+  USER_DETAIL:"/users/detail",
   //news
   NEWS: "/news",
   //media
